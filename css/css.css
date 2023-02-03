@@ -1,0 +1,121 @@
+
+body {
+    background: #2c2c2c;
+}
+
+aside {
+    margin-left: 0px;
+    float: left;
+    background: #181818;
+    width: 20%;
+    padding: 2.5%;
+    height: 100vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+
+}
+
+
+
+
+aside .logo
+{
+    color: khaki;
+    margin-left: 0px;
+    font-size: 35px;
+    font-weight: bold;
+    border: 4mm ridge rgba(211,220,50, .6);
+    top: -5px;
+
+
+
+}
+
+
+
+aside ul {list-style: none}
+aside ul li{
+
+    color: #fff;
+    display: block;
+    margin-top: 25px;
+    transition: transform .6s ease;
+
+    font-size: 25px;
+
+}
+
+aside ul li:hover, aside ul a:hover
+{
+    color: #eb5959;
+    text-decoration: none;
+    transform: scale(1.1);
+}
+
+main .features{
+    float: left;
+    color: #fff;
+
+    text-align: center;
+    width: 60%;
+
+
+}
+
+.features h1{
+    color: gold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none; /* Убираем подчёркивание */
+}
+
+.alert-warning{
+    float: left;
+    clear: both;
+    width: 800px;
+    margin: 20px 34%;
+    text-align: center;
+    border: 5px solid lightslategray;
+    height: 450px;
+
+}
+
+.alert-warning h2{
+    color: black;
+}
+.alert-warning .date{
+    text-align: right;
+    font-family: Arial;
+    font-size: 15px;
+    border: 1.5px solid black;
+    border-width: 1px 2px;
+    width: 170px;
+    text-align: center;
+}
+
+img.img-article-left.thumb {
+    width: 400px;
+    height: 200px;
+
+}
+
+.link-read-post{
+    padding: 10px;
+
+    background-color: white;
+    width: 200px;
+    color: black;
+    transition: 1s; /* Время эффекта */
+    text-align: center;
+    display: inline-block;
+
+
+
+}
+
+.link-read-post:hover{
+    transform: scale(1.2); /* Увеличиваем масштаб */
+}
