@@ -8,8 +8,6 @@ while (isNaN(numberOfFilms) || numberOfFilms<1)
 
 const personalMovieDB= {
     count: numberOfFilms,
-
-
     movies: {
     },
 }
