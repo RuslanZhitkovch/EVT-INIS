@@ -19,31 +19,44 @@ html {
   }
 
   article {
-
     padding: 10px;
     margin: 10px;
     background: rgba(16, 233, 215, 0.178);
   }
 
-  .container{
+
+  .section1{
     display: flex;
   }
 
-
-.container1{
+  .section2{
     display: flex;
+    flex-direction: row-reverse;
+
+
+  }
+
+ .section4-6{
+   display: flex;
+   flex-direction: column-reverse;
+
+
+ }
+
+.section7-8{
+  display: flex;
+  flex: 1;
+
+}
+
+.section9-10{
+  display: flex;
+ flex: 1;
+}
+
+.section7-10{
+  display: flex;
     flex-direction: column;
-  }
 
 
-.container2{
-  display: flex;
-  flex-direction: column;
 }
-
-.container3{
-  display: flex;
-  flex-direction: column;
-}
-
-
