@@ -211,3 +211,35 @@ a{
 .box{
 
 }
+
+.single-shirt{
+
+
+    width: 200px;
+    height: 300px;
+    border: 2px solid black;
+    margin: 10px;
+    float: left;
+    text-align: center;
+
+}
+
+#out{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+
+img{
+    width: 170px;
+    height: 180px;
+}
+
+button{
+    width: 70px;
+    height: 40px;
+    margin-left: 10px;
+}
+
