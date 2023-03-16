@@ -90,61 +90,71 @@ const shirts = [{
             "back": "shirt_images/default-m-back.png"
         },
 
-        "name": "Beep Boop",
-        "description": "Once upon a time, a mighty guide guarded the intersection of Forbes and Morewood, and would dutifully direct distracted college students when it was safe to cross the street. Its voice was soothing, strong, and steady. Its name was beep boop.",
-        "price": "$19.99",
-        "colors": {
-            "white": {
-                "front": "shirt_images/beepboop-white-front.png",
-                "back": "shirt_images/beepboop-white-back.png"
-            },
-            "blue": {
-                "front": "shirt_images/beepboop-blue-front.png",
-                "back": "shirt_images/beepboop-blue-back.png"
-            },
-            "pink": {
-                "front": "shirt_images/beepboop-pink-front.png",
-                "back": "shirt_images/beepboop-pink-back.png"
-            },
-            "red": {
-                "front": "shirt_images/beepboop-red-front.png",
-                "back": "shirt_images/beepboop-red-back.png"
-            }
-        },
-        "default": {
-            "front": "shirt_images/default-m-front.png",
-            "back": "shirt_images/default-m-back.png"
-        }
-
-
     }];
 
 
 
 
 var out = '';
-
+var count = 0;
 for (key in shirts)
 {
     out += '<div class = "single-shirt">';
     out +='<img src="'+shirts[key].colors.white.front+'">';
     out += '<h4>' + shirts[key].name + '</h4>';
     out += '<p id = "count">'+ 'Availiable ' + Object.keys(shirts[key].colors).length + ' colors' +'</p>';
-    out += '<button>Quick View</button>';
+    out += '<button class="btn">Quick View</button>';
     out += '<button>See Page</button>';
     out +='</div>';
+    count ++;
+
 
 }
+
 document.getElementById('out').innerHTML = out;
 
 
 
 
+ var modal = document.getElementById('myModal');
+
+const close = document.querySelectorAll('.close');
+const buttons = document.querySelectorAll('.btn');
+
+
+
+function handleClick()
+{
+    console.log(count);
+
+    modal.style.display = "block";
+}
+
+buttons.forEach((button) =>{
+    button.addEventListener('click', handleClick);
+})
+
+close.forEach((button) =>{
+    button.addEventListener('click', handleClick2);
+})
+
+function handleClick2()
+{
+    modal.style.display = "none";
+}
+
+
+window.onclick = function(event)
+{
+    if(event.target == modal)
+    {
+        modal.style.display = "none";
+    }
+}
 
 
 
 
-
-
+var out2 = '';
 
 
