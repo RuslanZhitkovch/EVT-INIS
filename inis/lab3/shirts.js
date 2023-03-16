@@ -96,18 +96,15 @@ const shirts = [{
 
 
 var out = '';
-var count = 0;
 for (key in shirts)
 {
     out += '<div class = "single-shirt">';
     out +='<img src="'+shirts[key].colors.white.front+'">';
     out += '<h4>' + shirts[key].name + '</h4>';
     out += '<p id = "count">'+ 'Availiable ' + Object.keys(shirts[key].colors).length + ' colors' +'</p>';
-    out += '<button class="btn">Quick View</button>';
+    out += '<button class="btn" id="' + shirts[key].name + '">Quick View</button>';
     out += '<button>See Page</button>';
     out +='</div>';
-    count ++;
-
 
 }
 
@@ -118,29 +115,35 @@ document.getElementById('out').innerHTML = out;
 
  var modal = document.getElementById('myModal');
 
-const close = document.querySelectorAll('.close');
-const buttons = document.querySelectorAll('.btn');
+//const close = document.querySelectorAll('.close');
+//const buttons = document.querySelectorAll('.btn');
 
 
 
-function handleClick()
-{
-    console.log(count);
+var button = document.querySelectorAll('button');
 
-    modal.style.display = "block";
-}
+for(var i=0; i<button.length; i++){
+    button[i].addEventListener('click', function(e)
+    {
+        let quick_out = '';
+        modal.style.display = "block";
+        let a = (e.target.getAttribute('id'));   // берем айди выбранного элемента по кнопке
+        let object = shirts.find(obj => obj.name === a);
+        let name = object.name;
+        let price = object.price;
+        let default_front = object.colors.white.front;
+        let default_back = object.colors.white.back;
 
-buttons.forEach((button) =>{
-    button.addEventListener('click', handleClick);
-})
+        quick_out += name + '<br>';
+        quick_out += price;
+        quick_out += '<img src="'+default_front+'">';
+        quick_out += '<img src="'+default_back+'">';
 
-close.forEach((button) =>{
-    button.addEventListener('click', handleClick2);
-})
+        document.getElementById('quick_out').innerHTML = quick_out;
 
-function handleClick2()
-{
-    modal.style.display = "none";
+
+
+    })
 }
 
 
@@ -155,6 +158,33 @@ window.onclick = function(event)
 
 
 
-var out2 = '';
+
+
+
+
+
+// function handleClick()
+// {
+//
+//     modal.style.display = "block";
+//
+// }
+
+// buttons.forEach((button) =>{
+//     button.addEventListener('click', handleClick);
+// })
+
+
+// close.forEach((button) =>{
+//     button.addEventListener('click', handleClick2);
+// })
+//
+// function handleClick2()
+// {
+//     modal.style.display = "none";
+// }
+
+
+
 
 
