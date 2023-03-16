@@ -1,8 +1,8 @@
 const shirts = [{
-    "name": "Beep Boop",
-    "description": "Once upon a time, a mighty guide guarded the intersection of Forbes and Morewood, and would dutifully direct distracted college students when it was safe to cross the street. Its voice was soothing, strong, and steady. Its name was beep boop.",
-    "price": "$19.99",
-    "colors": {
+    name: "Beep Boop",
+    description: "Once upon a time, a mighty guide guarded the intersection of Forbes and Morewood, and would dutifully direct distracted college students when it was safe to cross the street. Its voice was soothing, strong, and steady. Its name was beep boop.",
+    price: "$19.99",
+    colors: {
         "white": {
             "front": "shirt_images/beepboop-white-front.png",
             "back": "shirt_images/beepboop-white-back.png"
@@ -21,7 +21,7 @@ const shirts = [{
         }
     },
     "default": {
-        "front": "shirt_images/default-m-front.png",
+        "front": "shirt_images/car-red-front.png",
         "back": "shirt_images/default-m-back.png"
     }
 },
@@ -52,7 +52,7 @@ const shirts = [{
         }
     },
     "default": {
-        "front": "shirt_images/default-w-front.png",
+        "front": "shirt_images/car-blue-front.png",
         "back": "shirt_images/default-w-back.png"
     }
 },
@@ -71,7 +71,7 @@ const shirts = [{
         }
     },
     "default": {
-        "front": "shirt_images/default-w-front.png",
+        "front": "shirt_images/car-blue-front.png",
         "back": "shirt_images/default-w-back.png"
     }
 },
@@ -93,6 +93,38 @@ const shirts = [{
 
 
 
-document.write(shirts[0]['name']);
+
+var out = '';
+
+for (key in shirts)
+{
+
+    out += '<div class = "single-shirt">';
+
+
+    console.log(shirts[key].default.front);
+
+    out +='<img src="'+shirts[key].default.front+'">';
+
+    out += 'Название: ' + shirts[key].name + '<br>';
+    out += 'Цена: ' + shirts[key].price + '<br>';
+    out += '<button>Hey</button>';
+    out += '<button>Her</button>';
+    out +='</div>';
+
+
+
+
+}
+
+document.getElementById('out').innerHTML = out;
+
+
+
+
+
+
+
+
 
 
