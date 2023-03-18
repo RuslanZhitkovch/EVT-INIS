@@ -243,6 +243,7 @@ a{
 img{
     width: 200px;
     height: 200px;
+
 }
 
 button{
@@ -282,13 +283,13 @@ h4{
 }
 
 .modal-content{
-    background-color: #fefefe;
+    background-color: wheat;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    height: 1000px;
-    width: 1000px;
+    height: 350px;
+    width: 400px;
 
 }
 
@@ -300,6 +301,9 @@ h4{
 
 }
 
+h3{
+    padding-top: 10px;
+}
 
 
 

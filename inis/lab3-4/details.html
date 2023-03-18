@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details html</title>
+    <link rel="stylesheet" href="css.css">
+    <script src = "shirts.js" defer></script>
+
+
+    <style>
+        button{
+            border: 3.5px solid;
+            color: black;
+            background-color: #4CAF50; /* Green */
+
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+<div class="content" id = "see_page2"></div>
+
+
+
+<script>
+
+
+
+    let info = ''
+
+
+    let price = localStorage.getItem('price');
+    let name = '<h1>'+localStorage.getItem('name')+'</h1>';
+
+    let variable1 = localStorage.getItem('1');
+    let variable2 = localStorage.getItem('2');
+    let variable3 = localStorage.getItem('3');
+    let variable4 = localStorage.getItem('4');
+    let variable5 = localStorage.getItem('5');
+    let variable6 = localStorage.getItem('6');
+
+
+    info += '<h1>'+name+ '</h1>' + '<br>';
+    info += '<h3>' + price + '</h3>' + '<br>';
+
+
+
+    if (variable1 != null)
+    {
+        info += '<button id = "btn1" style="background:'+ variable1 +'"' +'>' + variable1+ '</button>' + '<br>';
+    }
+
+    if (variable2 != null)
+    {
+        info += '<button id = "btn2" style="background:'+ variable2 +'"' +'>' + variable2+ '</button>' + '<br>';
+    }
+
+    if (variable3 != null)
+    {
+        info += '<button id = "btn3" style="background:'+ variable3 +'"' +'>' + variable3+ '</button>' + '<br>';
+    }
+
+    if (variable4 != null)
+    {
+        info += '<button id = "btn4" style="background:'+ variable4 +'"' +'>' + variable4+ '</button>' + '<br>';
+    }
+
+    if (variable5 != null)
+    {
+        info += '<button  id = "btn5"  style="background:'+ variable5 +'"' +'>' + variable5+ '</button>' + '<br>';
+
+    }
+
+    if (variable6 != null)
+    {
+        info += '<button id = "btn6" style="background:'+ variable6 +'"' +'>' + variable6+ '</button>' + '<br>';
+        var btn6 = document.querySelectorAll('button.btn6');
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+    document.getElementById('see_page2').innerHTML=info;
+    localStorage.removeItem('name');
+    localStorage.removeItem('price');
+
+
+</script>
+
+
+</body>
+</html>

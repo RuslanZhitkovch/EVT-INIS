@@ -98,12 +98,13 @@ const shirts = [{
 var out = '';
 for (key in shirts)
 {
+
     out += '<div class = "single-shirt">';
     out +='<img src="'+shirts[key].colors.white.front+'">';
     out += '<h4>' + shirts[key].name + '</h4>';
     out += '<p id = "count">'+ 'Availiable ' + Object.keys(shirts[key].colors).length + ' colors' +'</p>';
-    out += '<button class="btn" id="' + shirts[key].name + '">Quick View</button>';
-    out += '<button>See Page</button>';
+    out += '<button class="quick_view" id="' + shirts[key].name + '">Quick View</button>';
+    out += '<button class="see_page" id="' + shirts[key].name  + '">See Page</button>';
     out +='</div>';
 
 }
@@ -112,18 +113,64 @@ document.getElementById('out').innerHTML = out;
 
 
 
-
- var modal = document.getElementById('myModal');
-
-//const close = document.querySelectorAll('.close');
-//const buttons = document.querySelectorAll('.btn');
-
+var modal = document.getElementById('myModal');    // переменная для работы с модальным окном
+var modal2 = document.getElementById('myModal2');
+var button_quick_view = document.querySelectorAll('button.quick_view');  // переменная для работы с quick_view
+var button_see_page = document.querySelectorAll('button.see_page');
 
 
-var button = document.querySelectorAll('button');
 
-for(var i=0; i<button.length; i++){
-    button[i].addEventListener('click', function(e)
+for(var i = 0; i<button_see_page.length; i++) {
+ button_see_page[i].addEventListener('click', function (e)
+    {
+
+    localStorage.clear();
+
+        let a = (e.target.getAttribute('id'));   // берем айди выбранного элемента по кнопке
+        let object = shirts.find(obj => obj.name === a);
+
+        let name = object.name;
+        let price = object.price + '<br>';
+
+
+
+
+
+
+
+
+        localStorage.setItem('name', name);
+        localStorage.setItem('price',price)
+
+
+       var dict = object.colors;
+
+        let count = 0;
+        for (var prop in dict) {
+            count = count +1;
+
+            localStorage.setItem(count,prop);
+            localStorage.setItem(prop+'_front',dict['white']['front']);
+            localStorage.setItem(prop+'_back',dict['white']['back']);
+
+
+
+        }
+
+
+
+        location = 'details.html';
+    })
+}
+
+
+
+
+
+
+
+for(var i=0; i<button_quick_view.length; i++){
+    button_quick_view[i].addEventListener('click', function(e)
     {
         let quick_out = '';
         modal.style.display = "block";
@@ -134,17 +181,25 @@ for(var i=0; i<button.length; i++){
         let default_front = object.colors.white.front;
         let default_back = object.colors.white.back;
 
-        quick_out += name + '<br>';
-        quick_out += price;
         quick_out += '<img src="'+default_front+'">';
-        quick_out += '<img src="'+default_back+'">';
-
+        quick_out += '<img src="'+default_back+'">'+ '<br>';
+        quick_out += '<h3>'+name+'</h3>' + '<br>';
+        quick_out += price;
         document.getElementById('quick_out').innerHTML = quick_out;
-
-
 
     })
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 window.onclick = function(event)
@@ -153,38 +208,10 @@ window.onclick = function(event)
     {
         modal.style.display = "none";
     }
+
+    if(event.target == modal2)
+    {
+        modal2.style.display = "none";
+    }
 }
-
-
-
-
-
-
-
-
-
-// function handleClick()
-// {
-//
-//     modal.style.display = "block";
-//
-// }
-
-// buttons.forEach((button) =>{
-//     button.addEventListener('click', handleClick);
-// })
-
-
-// close.forEach((button) =>{
-//     button.addEventListener('click', handleClick2);
-// })
-//
-// function handleClick2()
-// {
-//     modal.style.display = "none";
-// }
-
-
-
-
 
