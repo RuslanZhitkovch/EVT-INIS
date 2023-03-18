@@ -150,8 +150,8 @@ for(var i = 0; i<button_see_page.length; i++) {
             count = count +1;
 
             localStorage.setItem(count,prop);
-            localStorage.setItem(prop+'_front',dict['white']['front']);
-            localStorage.setItem(prop+'_back',dict['white']['back']);
+            localStorage.setItem(prop+'_front',dict[prop]['front']);
+            localStorage.setItem(prop+'_back',dict[prop]['back']);
 
 
 
