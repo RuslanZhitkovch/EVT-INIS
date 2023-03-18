@@ -134,17 +134,13 @@ for(var i = 0; i<button_see_page.length; i++) {
 
 
 
-
-
-
-
-
         localStorage.setItem('name', name);
-        localStorage.setItem('price',price)
+        localStorage.setItem('price',price);
+
+
 
 
        var dict = object.colors;
-
         let count = 0;
         for (var prop in dict) {
             count = count +1;
@@ -152,8 +148,6 @@ for(var i = 0; i<button_see_page.length; i++) {
             localStorage.setItem(count,prop);
             localStorage.setItem(prop+'_front',dict[prop]['front']);
             localStorage.setItem(prop+'_back',dict[prop]['back']);
-
-
 
         }
 
