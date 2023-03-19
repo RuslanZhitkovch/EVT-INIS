@@ -94,7 +94,6 @@ const shirts = [{
 
 
 
-
 var out = '';
 for (key in shirts)
 {
@@ -133,11 +132,8 @@ for(var i = 0; i<button_see_page.length; i++) {
         let price = object.price + '<br>';
 
 
-
         localStorage.setItem('name', name);
         localStorage.setItem('price',price);
-
-
 
 
        var dict = object.colors;
@@ -151,15 +147,9 @@ for(var i = 0; i<button_see_page.length; i++) {
 
         }
 
-
-
         location = 'details.html';
     })
 }
-
-
-
-
 
 
 
@@ -185,17 +175,6 @@ for(var i=0; i<button_quick_view.length; i++){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 window.onclick = function(event)
 {
     if(event.target == modal)
@@ -208,4 +187,3 @@ window.onclick = function(event)
         modal2.style.display = "none";
     }
 }
-
