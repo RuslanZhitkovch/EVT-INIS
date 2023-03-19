@@ -8,6 +8,11 @@
 
 
     <style>
+
+        body{
+            margin-left: 20px;
+        }
+
         button{
             border: 3.5px solid;
             color: black;
@@ -28,6 +33,10 @@
             border: 3.5px solid;
             height: 500px;
             width: 500px;
+        }
+
+        h1{
+            margin-left: 210px;
         }
 
         .side{
@@ -65,6 +74,7 @@
 
     info += '<h1>'+name+ '</h1>' + '<br>';
     info += '<h3>' + price + '</h3>' + '<br>';
+    info += 'Color:';
 
 
 
@@ -110,16 +120,15 @@
 
 
         info += '<h1>'+name+ '</h1>' + '<br>';
-        info += '<h3>' + price + '</h3>' + '<br>';
+        info += '<h3>' + price + '</h3>' + '<br>' + 'Side:';
         info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
 
+        info += 'Color:';
        info = show_buttons();
 
         info += part1 + part2;
 
-
         document.getElementById('see_page2').innerHTML=info;
-
 
     }
 
@@ -129,10 +138,10 @@
         info = '';
 
         info += '<h1>'+name+ '</h1>' + '<br>';
-        info += '<h3>' + price + '</h3>' + '<br>';
+        info += '<h3>' + price + '</h3>' + '<br>'+'Side:';
 
         info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
-
+        info += 'Color:';
         info = show_buttons();
 
         temp_back = localStorage.getItem(localStorage.getItem('key')) + '_back';
@@ -141,11 +150,9 @@
         let part1 = '<img class ="color-view" id = "img' +localStorage.getItem('key')+'"' + " src = '" ;
         let part2 = localStorage.getItem(temp_back) + "'"+ '></img>';
 
-
         info += part1 + part2;
 
         console.log(info);
-
 
         document.getElementById('see_page2').innerHTML=info;
     }
@@ -161,12 +168,11 @@
              info  = '';
 
             info += '<h1>'+name+ '</h1>' + '<br>';
-            info += '<h3>' + price + '</h3>' + '<br>';
+            info += '<h3>' + price + '</h3>' + '<br>'+'Side:';
             info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
             info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1 +'"' +'>' + variable1+ '</button>' ;
 
-
-
+            info += 'Color:';
             info = info.replaceAll('<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1 +'"' +'>' + variable1+ '</button>','');
             info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1 +'"' +'>' + variable1+ '</button>' ;
 
@@ -210,12 +216,12 @@
             info = '';
 
             info += '<h1>'+name+ '</h1>' + '<br>';
-            info += '<h3>' + price + '</h3>' + '<br>';
+            info += '<h3>' + price + '</h3>' + '<br>'+'Side:';
             info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
             info += '<button type = "button" onclick="buttonClick2(this)" id = "btn2"  style="background:'+ variable2 +'"' +'>' + variable2+ '</button>' ;
 
 
-
+            info += 'Color:';
             if (variable1 != null)
             {
                 info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1+'"' +'>' + variable1+ '</button>' ;
@@ -260,12 +266,12 @@
             info = '';
 
             info += '<h1>'+name+ '</h1>' + '<br>';
-            info += '<h3>' + price + '</h3>' + '<br>';
+            info += '<h3>' + price + '</h3>' + '<br>'+'Side:';
             info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
             info += '<button type = "button" onclick="buttonClick3(this)" id = "btn3"  style="background:'+ variable3 +'"' +'>' + variable3+ '</button>';
 
 
-
+            info += 'Color:';
             if (variable1 != null)
             {
                 info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1+'"' +'>' + variable1+ '</button>' ;
@@ -308,11 +314,11 @@
             info = '';
 
             info += '<h1>'+name+ '</h1>' + '<br>';
-            info += '<h3>' + price + '</h3>' + '<br>';
+            info += '<h3>' + price + '</h3>' + '<br>'+'Side:';
             info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
             info += '<button type = "button" onclick="buttonClick4(this)" id = "btn4"  style="background:'+ variable4 +'"' +'>' + variable4+ '</button>';
 
-
+            info += 'Color:';
             if (variable1 != null)
             {
                 info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1+'"' +'>' + variable1+ '</button>' ;
@@ -356,13 +362,13 @@
 
             info = '';
             info += '<h1>'+name+ '</h1>' + '<br>';
-            info += '<h3>' + price + '</h3>' + '<br>';
+            info += '<h3>' + price + '</h3>' + '<br>'+'Side:';
             info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
             info += '<button type = "button" onclick="buttonClick5(this)" id = "btn5"  style="background:'+ variable5 +'"' +'>' + variable5+ '</button>' ;
 
 
 
-
+            info += 'Color:';
             if (variable1 != null)
             {
                 info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1+'"' +'>' + variable1+ '</button>' ;
