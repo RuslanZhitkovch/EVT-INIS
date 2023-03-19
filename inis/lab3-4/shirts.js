@@ -119,11 +119,11 @@ var button_see_page = document.querySelectorAll('button.see_page');
 
 
 
-for(var i = 0; i<button_see_page.length; i++) {
+for(var i = 0; i<button_see_page.length; i++) {             // для перехода на страницу details.html, (нажатие на кнопку 'page')
  button_see_page[i].addEventListener('click', function (e)
     {
 
-    localStorage.clear();
+       localStorage.clear();
 
         let a = (e.target.getAttribute('id'));   // берем айди выбранного элемента по кнопке
         let object = shirts.find(obj => obj.name === a);
@@ -153,7 +153,8 @@ for(var i = 0; i<button_see_page.length; i++) {
 
 
 
-for(var i=0; i<button_quick_view.length; i++){
+for(var i=0; i<button_quick_view.length; i++){                // ф-ция отображения модального окна
+
     button_quick_view[i].addEventListener('click', function(e)
     {
         let quick_out = '';
@@ -175,7 +176,7 @@ for(var i=0; i<button_quick_view.length; i++){
 }
 
 
-window.onclick = function(event)
+window.onclick = function(event)           // для модального окна
 {
     if(event.target == modal)
     {

@@ -68,11 +68,30 @@
 
 
 
-    function add_info(name,price,)
+    function show_buttons()
     {
-        let myinfo = '';
+        if (variable1 != null)
+        {
+            info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1+'"' +'>' + variable1+ '</button>' ;
+        }
+        if (variable2 != null)
+        {
+            info += '<button type = "button" onclick="buttonClick2(this)" id = "btn2"  style="background:'+ variable2 +'"' +'>' + variable2+ '</button>' ;
+        }
+        if (variable3 != null)
+        {
+            info += '<button type = "button" onclick="buttonClick3(this)" id = "btn3"  style="background:'+ variable3 +'"' +'>' + variable3+ '</button>' ;
+        }
+        if (variable4 != null)
+        {
+            info += '<button type = "button" onclick="buttonClick4(this)" id = "btn4"  style="background:'+ variable4 +'"' +'>' + variable4+ '</button>' ;
+        }
+        if (variable5 != null)
+        {
+            info += '<button type = "button" onclick="buttonClick5(this)" id = "btn5"  style="background:'+ variable5 +'"' +'>' + variable5+ '</button>' ;
+        }
 
-
+        return info;
     }
 
 
@@ -94,26 +113,7 @@
         info += '<h3>' + price + '</h3>' + '<br>';
         info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
 
-        if (variable1 != null)
-        {
-            info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1+'"' +'>' + variable1+ '</button>' ;
-        }
-        if (variable2 != null)
-        {
-            info += '<button type = "button" onclick="buttonClick2(this)" id = "btn2"  style="background:'+ variable2 +'"' +'>' + variable2+ '</button>' ;
-        }
-        if (variable3 != null)
-        {
-            info += '<button type = "button" onclick="buttonClick3(this)" id = "btn3"  style="background:'+ variable3 +'"' +'>' + variable3+ '</button>' ;
-        }
-        if (variable4 != null)
-        {
-            info += '<button type = "button" onclick="buttonClick4(this)" id = "btn4"  style="background:'+ variable4 +'"' +'>' + variable4+ '</button>' ;
-        }
-        if (variable5 != null)
-        {
-            info += '<button type = "button" onclick="buttonClick5(this)" id = "btn5"  style="background:'+ variable5 +'"' +'>' + variable5+ '</button>' ;
-        }
+       info = show_buttons();
 
         info += part1 + part2;
 
@@ -133,26 +133,7 @@
 
         info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
 
-        if (variable1 != null)
-        {
-            info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1+'"' +'>' + variable1+ '</button>' ;
-        }
-        if (variable2 != null)
-        {
-            info += '<button type = "button" onclick="buttonClick2(this)" id = "btn2"  style="background:'+ variable2 +'"' +'>' + variable2+ '</button>' ;
-        }
-        if (variable3 != null)
-        {
-            info += '<button type = "button" onclick="buttonClick3(this)" id = "btn3"  style="background:'+ variable3 +'"' +'>' + variable3+ '</button>' ;
-        }
-        if (variable4 != null)
-        {
-            info += '<button type = "button" onclick="buttonClick4(this)" id = "btn4"  style="background:'+ variable4 +'"' +'>' + variable4+ '</button>' ;
-        }
-        if (variable5 != null)
-        {
-            info += '<button type = "button" onclick="buttonClick5(this)" id = "btn5"  style="background:'+ variable5 +'"' +'>' + variable5+ '</button>' ;
-        }
+        info = show_buttons();
 
         temp_back = localStorage.getItem(localStorage.getItem('key')) + '_back';
 
@@ -184,6 +165,12 @@
             info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
             info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1 +'"' +'>' + variable1+ '</button>' ;
 
+
+
+            info = info.replaceAll('<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1 +'"' +'>' + variable1+ '</button>','');
+            info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1 +'"' +'>' + variable1+ '</button>' ;
+
+
             if (variable2 != null)
             {
                 info += '<button type = "button" onclick="buttonClick2(this)" id = "btn2"  style="background:'+ variable2 +'"' +'>' + variable2+ '</button>' ;
@@ -202,7 +189,6 @@
             }
 
             info += '<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_front') + '></img>';
-
 
 
             document.getElementById('see_page2').innerHTML=info;
@@ -234,6 +220,10 @@
             {
                 info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1+'"' +'>' + variable1+ '</button>' ;
             }
+
+            info = info.replace('<button type = "button" onclick="buttonClick2(this)" id = "btn2"  style="background:'+ variable2 +'"' +'>' + variable2+ '</button>','');
+            info += '<button type = "button" onclick="buttonClick2(this)" id = "btn2"  style="background:'+ variable2 +'"' +'>' + variable2+ '</button>' ;
+
             if (variable3 != null)
             {
                 info += '<button type = "button" onclick="buttonClick3(this)" id = "btn3"  style="background:'+ variable3 +'"' +'>' + variable3+ '</button>' ;
@@ -284,6 +274,10 @@
             {
                 info += '<button type = "button" onclick="buttonClick2(this)" id = "btn2"  style="background:'+ variable2 +'"' +'>' + variable2+ '</button>' ;
             }
+
+            info = info.replaceAll('<button type = "button" onclick="buttonClick3(this)" id = "btn3"  style="background:'+ variable3 +'"' +'>' + variable3+ '</button>', '');
+            info += '<button type = "button" onclick="buttonClick3(this)" id = "btn3"  style="background:'+ variable3 +'"' +'>' + variable3+ '</button>';
+
             if (variable4 != null)
             {
                 info += '<button type = "button" onclick="buttonClick4(this)" id = "btn4"  style="background:'+ variable4 +'"' +'>' + variable4+ '</button>' ;
@@ -293,10 +287,7 @@
                 info += '<button type = "button" onclick="buttonClick5(this)" id = "btn5"  style="background:'+ variable5 +'"' +'>' + variable5+ '</button>' ;
             }
 
-
-
             info += '<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_front') + '></img>';
-
 
 
             localStorage.setItem('key', '3');
@@ -314,16 +305,12 @@
         function buttonClick4()
         {
 
-
-
-
             info = '';
 
             info += '<h1>'+name+ '</h1>' + '<br>';
             info += '<h3>' + price + '</h3>' + '<br>';
             info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
             info += '<button type = "button" onclick="buttonClick4(this)" id = "btn4"  style="background:'+ variable4 +'"' +'>' + variable4+ '</button>';
-
 
 
             if (variable1 != null)
@@ -338,6 +325,11 @@
             {
                 info += '<button type = "button" onclick="buttonClick3(this)" id = "btn3"  style="background:'+ variable3 +'"' +'>' + variable3+ '</button>' ;
             }
+
+            info = info.replaceAll('<button type = "button" onclick="buttonClick4(this)" id = "btn4"  style="background:'+ variable4 +'"' +'>' + variable4+ '</button>','');
+
+            info += '<button type = "button" onclick="buttonClick4(this)" id = "btn4"  style="background:'+ variable4 +'"' +'>' + variable4+ '</button>';
+
             if (variable5 != null)
             {
                 info += '<button type = "button" onclick="buttonClick5(this)" id = "btn5"  style="background:'+ variable5 +'"' +'>' + variable5+ '</button>' ;
@@ -387,6 +379,9 @@
             {
                 info += '<button type = "button" onclick="buttonClick4(this)" id = "btn4"  style="background:'+ variable4 +'"' +'>' + variable4+ '</button>' ;
             }
+
+            info = info.replaceAll('<button type = "button" onclick="buttonClick5(this)" id = "btn5"  style="background:'+ variable5 +'"' +'>' + variable5+ '</button>','');
+            info += '<button type = "button" onclick="buttonClick5(this)" id = "btn5"  style="background:'+ variable5 +'"' +'>' + variable5+ '</button>' ;
 
 
             info += '<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_front') + '></img>';
