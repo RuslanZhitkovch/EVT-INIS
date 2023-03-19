@@ -48,7 +48,8 @@
 
 
 
-    let info = ''
+
+
 
 
     let price = localStorage.getItem('price');
@@ -62,10 +63,18 @@
     let variable5 = localStorage.getItem('5');
 
 
+    let info = ''
+
 
     info += '<h1>'+name+ '</h1>' + '<br>';
     info += '<h3>' + price + '</h3>' + '<br>';
-    info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
+    //info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>';
+
+
+
+
+
+
 
 
 
@@ -74,50 +83,61 @@
 
     function buttonClickFront()
     {
-        info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_front') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_front') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_front') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_front') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_front') + '></img>', '');
 
-        info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_back') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_back') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_back') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_back') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_back') + '></img>', '');
+        temp_front = localStorage.getItem(localStorage.getItem('key')) + '_front';
+
+        let part1 = '<img class ="color-view" id = "img' +localStorage.getItem('key')+'"' + " src = '" ;
+        let part2 = localStorage.getItem(temp_front) + "'"+ '></img>';
+
+        temp_back = localStorage.getItem(localStorage.getItem('key')) + '_back';
 
 
-
-
-
-        info += '<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_front') + '></img>';
+        info = '';
+        info += '<h1>'+name+ '</h1>' + '<br>';
+        info += '<h3>' + price + '</h3>' + '<br>';
+        info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
+        info += part1 + part2;
 
 
         document.getElementById('see_page2').innerHTML=info;
+
+
     }
 
     function buttonClickBack()
     {
-        info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_front') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_front') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_front') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_front') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_front') + '></img>', '');
 
-        info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_back') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_back') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_back') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_back') + '></img>', '');
-        info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_back') + '></img>', '');
+
+        info = '';
+
+
+
+        info += '<h1>'+name+ '</h1>' + '<br>';
+        info += '<h3>' + price + '</h3>' + '<br>';
+        info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
 
 
 
 
+        temp_back = localStorage.getItem(localStorage.getItem('key')) + '_back';
 
 
 
 
-        info += '<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_back') + '></img>';
+        let part1 = '<img class ="color-view" id = "img' +localStorage.getItem('key')+'"' + " src = '" ;
+        let part2 = localStorage.getItem(temp_back) + "'"+ '></img>';
+
+
+
+
+
+        info += part1 + part2;
+
+
+
+        console.log(info);
+
+
         document.getElementById('see_page2').innerHTML=info;
     }
 
@@ -126,21 +146,16 @@
     {
 
 
-        info +='Colors' + '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1 +'"' +'>' + variable1+ '</button>' ;
+        info += '<button type = "button" onclick="buttonClick1(this)" id = "btn1"  style="background:'+ variable1 +'"' +'>' + variable1+ '</button>' ;
 
         function buttonClick1()
         {
-            info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_front') + '></img>', '');
 
-            info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_back') + '></img>', '');
+             info  = '';
+            info += '<h1>'+name+ '</h1>' + '<br>';
+            info += '<h3>' + price + '</h3>' + '<br>';
+            info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
+
 
 
 
@@ -148,7 +163,7 @@
             info += '<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_front') + '></img>';
             document.getElementById('see_page2').innerHTML=info;
 
-
+            console.log(info);
             localStorage.setItem('key', '1');
 
 
@@ -160,19 +175,18 @@
     if (variable2 != null)
     {
         info += '<button type = "button" onclick="buttonClick2(this)" id = "btn2"  style="background:'+ variable2 +'"' +'>' + variable2+ '</button>' ;
+
         function buttonClick2()
         {
-            info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_front') + '></img>', '');
 
-            info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_back') + '></img>', '');
+            info = '';
+
+            info += '<h1>'+name+ '</h1>' + '<br>';
+            info += '<h3>' + price + '</h3>' + '<br>';
+            info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
+
+
+
 
 
             info += '<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_front') + '></img>';
@@ -190,19 +204,18 @@
     if (variable3 != null)
     {
         info += '<button type = "button" onclick="buttonClick3(this)" id = "btn3"  style="background:'+ variable3 +'"' +'>' + variable3+ '</button>';
+
         function buttonClick3()
         {
-            info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_front') + '></img>', '');
 
-            info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_back') + '></img>', '');
+            info = '';
+
+            info += '<h1>'+name+ '</h1>' + '<br>';
+            info += '<h3>' + price + '</h3>' + '<br>';
+            info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
+
+
+
 
             info += '<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_front') + '></img>';
 
@@ -219,24 +232,21 @@
     if (variable4 != null)
     {
         info += '<button type = "button" onclick="buttonClick4(this)" id = "btn4"  style="background:'+ variable4 +'"' +'>' + variable4+ '</button>';
+
         function buttonClick4()
         {
 
-            info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_front') + '></img>', '');
-
-            info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_back') + '></img>', '');
 
 
 
-            //console.log(localStorage.getItem(variable4+'_front'));
+            info = '';
+
+            info += '<h1>'+name+ '</h1>' + '<br>';
+            info += '<h3>' + price + '</h3>' + '<br>';
+            info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
+
+
+
 
             info += '<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_front') + '></img>';
 
@@ -248,21 +258,20 @@
 
     if (variable5 != null)
     {
+
         info += '<button type = "button" onclick="buttonClick5(this)" id = "btn5"  style="background:'+ variable5 +'"' +'>' + variable5+ '</button>' ;
+
 
         function buttonClick5()
         {
-            info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_front') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_front') + '></img>', '');
 
-            info = info.replaceAll('<img class ="color-view" id = "img1" src = ' + localStorage.getItem(variable1+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img2" src = ' + localStorage.getItem(variable2+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img3" src = ' + localStorage.getItem(variable3+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img4" src = ' + localStorage.getItem(variable4+'_back') + '></img>', '');
-            info = info.replaceAll('<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_back') + '></img>', '');
+
+            info = '';
+            info += '<h1>'+name+ '</h1>' + '<br>';
+            info += '<h3>' + price + '</h3>' + '<br>';
+            info += '<button type = "button" onclick="buttonClickFront(this)" id = "frontBtn" class = "side">Front</button>'+ '<button type = "button" onclick="buttonClickBack(this)" id = "backBtn" class = "side">Back</button>'+ '<br>';
+
+
 
 
             info += '<img class ="color-view" id = "img5" src = ' + localStorage.getItem(variable5+'_front') + '></img>';
@@ -274,7 +283,10 @@
         }
     }
 
+
+
     document.getElementById('see_page2').innerHTML=info;
+
     localStorage.removeItem('name');
     localStorage.removeItem('price');
 
