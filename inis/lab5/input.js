@@ -1,4 +1,18 @@
+
+
+
+
 const targets = document.querySelectorAll('.target');
+
+// флаг, указывающий, что элемент "приклеен" к курсору
+let isSticky = false;
+
+// элемент, который "приклеен" к курсору
+let stickyElement = null;
+
+
+
+
 
 targets.forEach(target => {
     target.addEventListener('mousedown', (e) => {
@@ -8,11 +22,46 @@ targets.forEach(target => {
         const targetX = target.offsetLeft;
         const targetY = target.offsetTop;
 
+
+
+
         // добавляем обработчик события mousemove на document
         document.addEventListener('mousemove', onMouseMove);
 
         // добавляем обработчик события mouseup на document
         document.addEventListener('mouseup', onMouseUp);
+
+
+        document.addEventListener('keydown', function(event) {
+
+
+
+            if (event.key === 'Escape') {
+                // Обработчик для нажатия клавиши ESC
+                // здесь можно добавить логику для отмены перетаскивания и возврата элемента на исходную позицию
+
+
+
+
+                    // удаляем обработчики событий мыши
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+
+                    stickyElement.style.left = startX+'px';
+                    stickyElement.style.top = startY +'px';
+
+
+
+
+                    // снимаем флаг, указывающий, что элемент "приклеен" к курсору
+                    isSticky = false;
+
+
+
+
+            }
+        });
+
 
         // функция для обработки события mousemove
         function onMouseMove(e) {
@@ -49,14 +98,6 @@ document.addEventListener('click', (e) => {
 });
 
 
-// получаем все элементы с классом "target"
-const elements = document.querySelectorAll('.target');
-
-// флаг, указывающий, что элемент "приклеен" к курсору
-let isSticky = false;
-
-// элемент, который "приклеен" к курсору
-let stickyElement = null;
 
 // обработчик события "двойной клик"
 function onDoubleClick(event) {
@@ -71,12 +112,14 @@ function onDoubleClick(event) {
     // устанавливаем флаг, указывающий, что элемент "приклеен" к курсору
     isSticky = true;
 
-    // изменяем цвет элемента
-    stickyElement.style.backgroundColor = 'red';
+
+
+
 
     // добавляем обработчики событий мыши для перемещения элемента
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
+
 }
 
 // обработчик события "движение мыши"
@@ -100,13 +143,12 @@ function onMouseUp(event) {
         // снимаем флаг, указывающий, что элемент "приклеен" к курсору
         isSticky = false;
 
-        // возвращаем изначальный цвет элемента
-        stickyElement.style.backgroundColor = '';
+
     }
 }
 
 // добавляем обработчик события "двойной клик" ко всем элементам с классом "target"
-elements.forEach((element) => {
+targets.forEach((element) => {
     element.addEventListener('dblclick', onDoubleClick);
 });
 
@@ -127,3 +169,27 @@ document.addEventListener("keydown", function(event) {
         }
     }
 });
+
+targets.forEach(target => {
+    target.addEventListener('dblclick', (e) => {
+        target.classList.toggle('selected');
+        setTimeout(() => {
+            if (!target.classList.contains('selected')) return;
+            target.classList.remove('selected');
+        }, 100);
+    });
+});
+
+
+
+function handleKeyDown(event) {
+    if (event.key === "Escape") {
+        target.style.left = newTargetX + 'px';
+        target.style.top = newTargetY + 'px';
+        isDragging = false;
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
+    }
+}
+
+document.addEventListener("keydown", handleKeyDown);
