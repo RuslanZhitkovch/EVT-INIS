@@ -15,86 +15,54 @@
 
 
 <script>
-    function dragElement(elmnt) {
-        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        if (document.getElementById(elmnt.id + "-header")) {
-            // если у элемента есть "шапка" для перетаскивания, добавляем обработчик события для начала перетаскивания
-            document.getElementById(elmnt.id + "-header").onmousedown = dragMouseDown;
-            document.getElementById(elmnt.id + "-header").addEventListener("touchstart", dragTouchStart, {passive: true});
-        } else {
-            // иначе, перемещение начинается на самом элементе
-            elmnt.onmousedown = dragMouseDown;
-            elmnt.addEventListener("touchstart", dragTouchStart, {passive: true});
-        }
-
-        function dragMouseDown(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // получаем начальные координаты курсора мыши
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            document.onmouseup = closeDragElement;
-            // вызываем функцию при перемещении мыши
-            document.onmousemove = elementDrag;
-        }
-
-        function elementDrag(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // вычисляем новые позиции элемента
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            // устанавливаем новые позиции элемента
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        }
-
-        function closeDragElement() {
-            // завершаем перемещение элемента при отпускании кнопки мыши
-            document.onmouseup = null;
-            document.onmousemove = null;
-        }
-
-        function dragTouchStart(e) {
-            var touch = e.changedTouches[0];
-            // получаем начальные координаты касания
-            pos3 = touch.clientX;
-            pos4 = touch.clientY;
-            // добавляем обработчики для перемещения и завершения перемещения
-            document.addEventListener("touchmove", dragTouchMove, {passive: true});
-            document.addEventListener("touchend", dragTouchEnd, {passive: true});
-        }
-
-        function dragTouchMove(e) {
-            var touch = e.changedTouches[0];
-            // вычисляем новые позиции элемента
-            pos1 = pos3 - touch.clientX;
-            pos2 = pos4 - touch.clientY;
-            pos3 = touch.clientX;
-            pos4 = touch.clientY;
-            // устанавливаем новые позиции элемента
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        }
-
-        function dragTouchEnd(e) {
-            // удаляем обработчики событий touchmove и touchend из элемента
-            this.removeEventListener("touchmove", dragTouchMove, { passive: true });
-            this.removeEventListener("touchend", dragTouchEnd, { passive: true });
-
-            // сбрасываем значения переменных
-            startX = null;
-            startY = null;
-            currentX = null;
-            currentY = null;
-        }}
-
+    // получаем элемент div, который мы хотим сделать перетаскиваемым
     var draggableElement = document.getElementById("myDiv");
 
-    // вызываем функцию, чтобы сделать его перетаскиваемым
-    dragElement(draggableElement);
+    // устанавливаем начальные значения координат
+    var startX = null;
+    var startY = null;
+    var currentX = null;
+    var currentY = null;
+
+    // добавляем обработчик события touchstart
+    draggableElement.addEventListener("touchstart", dragTouchStart, { passive: true });
+
+    // функция-обработчик для touchstart
+    function dragTouchStart(e) {
+        // сохраняем начальные координаты касания
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+
+        // добавляем обработчики событий touchmove и touchend
+        this.addEventListener("touchmove", dragTouchMove, { passive: true });
+        this.addEventListener("touchend", dragTouchEnd, { passive: true });
+    }
+
+    // функция-обработчик для touchmove
+    function dragTouchMove(e) {
+        // предотвращаем стандартное поведение браузера для touch-событий
+        e.preventDefault();
+
+        // вычисляем текущие координаты касания
+        currentX = e.touches[0].clientX - startX;
+        currentY = e.touches[0].clientY - startY;
+
+        // перемещаем элемент на экране
+        this.style.transform = "translate(" + currentX + "px, " + currentY + "px)";
+    }
+
+    // функция-обработчик для touchend
+    function dragTouchEnd(e) {
+        // удаляем обработчики событий touchmove и touchend из элемента
+        this.removeEventListener("touchmove", dragTouchMove, { passive: true });
+        this.removeEventListener("touchend", dragTouchEnd, { passive: true });
+
+        // сбрасываем значения переменных
+        startX = null;
+        startY = null;
+        currentX = null;
+        currentY = null;
+    }
 
 </script>
 
