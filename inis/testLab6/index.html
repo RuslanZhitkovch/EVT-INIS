@@ -1,0 +1,73 @@
+<div id="myDiv" style="position: absolute; left: 100px; top: 100px; width: 50px; height: 50px; background-color: red;"></div>
+
+<script>
+    var myDiv = document.getElementById('myDiv');
+    var isDragging = false;
+    var isFollowing = false;
+    var startX, startY, currentX, currentY;
+    var lastTouchTime = 0;
+
+    myDiv.addEventListener('touchstart', function(e) {
+        if (e.touches.length == 1) {
+            // Single touch
+            isDragging = true;
+            startX = e.touches[0].pageX;
+            startY = e.touches[0].pageY;
+            currentX = parseInt(myDiv.style.left);
+            currentY = parseInt(myDiv.style.top);
+            // Check for double tap
+            var now = Date.now();
+            if (now - lastTouchTime <= 300) {
+                isFollowing = true;
+            }
+            lastTouchTime = now;
+        } else {
+            // Multiple touches, cancel dragging
+            isDragging = false;
+            isFollowing = false;
+        }
+    });
+
+    myDiv.addEventListener('touchmove', function(e) {
+        if (isDragging && e.touches.length == 1) {
+            // Single touch, dragging
+            var dx = e.touches[0].pageX - startX;
+            var dy = e.touches[0].pageY - startY;
+            myDiv.style.left = (currentX + dx) + 'px';
+            myDiv.style.top = (currentY + dy) + 'px';
+        } else if (isFollowing) {
+            // Following finger
+            var x = e.touches[0].pageX - myDiv.offsetWidth / 2;
+            var y = e.touches[0].pageY - myDiv.offsetHeight / 2;
+            myDiv.style.left = x + 'px';
+            myDiv.style.top = y + 'px';
+        } else {
+            // Multiple touches, cancel dragging
+            isDragging = false;
+            isFollowing = false;
+        }
+    });
+
+    myDiv.addEventListener('touchend', function(e) {
+        if (isFollowing) {
+            // End of following finger mode, check for click
+            isFollowing = false;
+            var now = Date.now();
+            if (now - lastTouchTime <= 300) {
+                // Double tap, do nothing
+            } else {
+                // Single tap, center div on touch end location
+                myDiv.style.left = (e.changedTouches[0].pageX - myDiv.offsetWidth / 2) + 'px';
+                myDiv.style.top = (e.changedTouches[0].pageY - myDiv.offsetHeight / 2) + 'px';
+            }
+        } else if (isDragging) {
+            // End of dragging, check for second finger
+            isDragging = false;
+            if (e.touches.length > 0) {
+                // Second finger down, cancel dragging
+                myDiv.style.left = startX + 'px';
+                myDiv.style.top = startY + 'px';
+            }
+        }
+    });
+</script>
