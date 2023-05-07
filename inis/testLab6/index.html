@@ -11,47 +11,54 @@
 </head>
 <body>
 
-<div id="box" style="width: 300px; height: 300px; background: red;"></div>
+<div id="myDiv" style="width: 100px; height: 100px; background-color: red;"></div>
+
 
 <script>
-    const box = document.getElementById('box');
-    let isFollowingFinger = false;
-    let startX = 0;
-    let startY = 0;
+    // Получаем ссылку на элемент, который будем перетаскивать
+    var draggable = document.getElementById("myDiv");
 
-    box.addEventListener('touchstart', (event) => {
-        if (event.touches.length === 2) {
-            isFollowingFinger = true;
-            startX = box.offsetLeft - event.touches[0].clientX;
-            startY = box.offsetTop - event.touches[0].clientY;
-        } else {
-            isFollowingFinger = false;
-            startX = event.touches[0].clientX - box.offsetLeft;
-            startY = event.touches[0].clientY - box.offsetTop;
-        }
-    });
+    // Координаты, где началось касание
+    var startX, startY;
 
-    box.addEventListener('touchmove', (event) => {
+    // Координаты элемента, на котором происходит касание
+    var deltaX = 0, deltaY = 0;
+
+    // Обработчик события touchstart
+    draggable.addEventListener("touchstart", function(event) {
+        // Запоминаем координаты начала касания
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+
+        // Отключаем стандартное поведение браузера для события touchstart,
+        // чтобы при перемещении пальца по экрану не скролилась страница
         event.preventDefault();
-        if (isFollowingFinger) {
-            box.style.left = event.touches[0].clientX + startX + 'px';
-            box.style.top = event.touches[0].clientY + startY + 'px';
-        } else {
-            box.style.left = event.touches[0].clientX - startX + 'px';
-            box.style.top = event.touches[0].clientY - startY + 'px';
-        }
     });
 
-    box.addEventListener('touchend', (event) => {
-        if (isFollowingFinger && event.touches.length !== 2) {
-            isFollowingFinger = false;
-        }
+    // Обработчик события touchmove
+    draggable.addEventListener("touchmove", function(event) {
+        // Вычисляем смещение по осям X и Y
+        deltaX = event.touches[0].clientX - startX;
+        deltaY = event.touches[0].clientY - startY;
+
+        // Перемещаем элемент на соответствующее смещение
+        draggable.style.transform = "translate(" + deltaX + "px, " + deltaY + "px)";
+
+        // Отключаем стандартное поведение браузера для события touchmove,
+        // чтобы при перемещении пальца по экрану не скролилась страница
+        event.preventDefault();
     });
 
-    box.addEventListener('touchcancel', () => {
-        isFollowingFinger = false;
-        box.style.left = '';
-        box.style.top = '';
+    // Обработчик события touchend
+    draggable.addEventListener("touchend", function(event) {
+        // Обнуляем смещение элемента
+        deltaX = 0;
+        deltaY = 0;
+
+        // Отключаем трансформацию элемента, чтобы он оставался на новом месте
+        draggable.style.transform = "none";
+
+        // Отключаем стандартное повед
     });
 </script>
 
