@@ -41,23 +41,15 @@ targets.forEach(target => {
                 // здесь можно добавить логику для отмены перетаскивания и возврата элемента на исходную позицию
 
 
-
-
                     // удаляем обработчики событий мыши
                     document.removeEventListener('mousemove', onMouseMove);
                     document.removeEventListener('mouseup', onMouseUp);
 
-                    stickyElement.style.left = startX+'px';
-                    stickyElement.style.top = startY +'px';
-
-
-
+                    stickyElement.style.left = targetX+'px';
+                    stickyElement.style.top = targetY +'px';
 
                     // снимаем флаг, указывающий, что элемент "приклеен" к курсору
                     isSticky = false;
-
-
-
 
             }
         });
@@ -193,3 +185,140 @@ function handleKeyDown(event) {
 }
 
 document.addEventListener("keydown", handleKeyDown);
+
+
+
+
+
+
+
+
+
+
+window.addEventListener("touchstart", (e) => {
+    const box = e.target.closest(".target");
+    if (box) {
+        const posX = box.style.left;
+        const posY = box.style.top;
+
+        const touchMove = (e) => {
+            e.preventDefault();
+            box.style.left = e.targetTouches[0].pageX - box.offsetWidth / 2 + "px";
+            box.style.top = e.targetTouches[0].pageY - box.offsetHeight / 2 + "px";
+            console.log("Move1");
+        };
+
+        box.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+        });
+
+        box.addEventListener("touchmove", touchMove);
+
+        box.addEventListener("touchend", (e) => {
+            e.preventDefault();
+            if (e.touches.length > 0) {
+                box.style.left = posX;
+                box.style.top = posY;
+                document.removeEventListener("touchmove", touchMove);
+            }
+            console.log("End1");
+        });
+    }
+});
+
+// "Finger-follow" mode
+const THRESHOLD = 300; // in milliseconds
+let touchStartTime = 0;
+window.addEventListener("touchstart", (e) => {
+    const box = e.target.closest(".target");
+    if (box) {
+        touchStartTime = Date.now();
+        box.addEventListener("touchstart", tapHandler);
+    }
+});
+
+const tapHandler = (event) => {
+    const box = event.target.closest(".target");
+    const posX = box.style.left;
+    const posY = box.style.top;
+    const touchEndTime = Date.now();
+    if (touchEndTime - touchStartTime < THRESHOLD) {
+        event.preventDefault();
+        console.log("tapped twice");
+        box.style.backgroundColor = "yellow";
+        const double_touch_move = (e) => {
+            e.preventDefault();
+            box.style.left = e.touches[0].pageX - box.offsetWidth / 2 + "px";
+            box.style.top = e.touches[0].pageY - box.offsetHeight / 2 + "px";
+            console.log("Move2");
+        };
+
+        box.addEventListener("touchend", (e) => {
+            e.preventDefault();
+
+            document.addEventListener("touchmove", double_touch_move);
+            document.addEventListener("touchstart", () => {
+                document.addEventListener("touchend", (e) => {
+                    if (e.touches.length > 0) {
+                        box.style.left = posX;
+                        box.style.top = posY;
+                    }
+                    document.removeEventListener("touchmove", double_touch_move);
+                    box.style.backgroundColor = "red";
+                });
+                console.log("End2");
+            });
+        });
+    }
+};
+
+// Scaling
+window.addEventListener("touchstart", (e) => {
+    const box = e.target.closest(".target");
+    if (box) {
+        let initDistance = null;
+        let initWidth = null;
+        let initHeight = null;
+
+        const scaleStart = (e) => {
+            if (e.touches.length === 2) {
+                initWidth = box.offsetWidth;
+                initHeight = box.offsetHeight;
+                initDistance = getDistance(e.touches[0], e.touches[1]);
+            }
+        };
+
+        const scaleMove = (e) => {
+            if (e.touches.length === 2 && initDistance !== null) {
+                const newDistance = getDistance(e.touches[0], e.touches[1]);
+                const scale = newDistance / initDistance;
+                const newWidth = initWidth * scale;
+                const newHeight = initHeight * scale;
+
+                // Set a minimum size of 50px
+                if (newWidth >= 50 && newHeight >= 50) {
+                    box.style.width = newWidth + "px";
+                    box.style.height = newHeight + "px";
+                }
+            }
+        };
+
+        const scaleEnd = (e) => {
+            if (e.touches.length !== 2) {
+                initDistance = null;
+            }
+        };
+
+        box.addEventListener("touchstart", scaleStart);
+        box.addEventListener("touchmove", scaleMove);
+        box.addEventListener("touchend", scaleEnd);
+
+        // Rest of the code...
+    }
+});
+
+const getDistance = (touch1, touch2) => {
+    const dx = touch1.pageX - touch2.pageX;
+    const dy = touch1.pageY - touch2.pageY;
+    return Math.sqrt(dx * dx + dy * dy);
+};
