@@ -1,14 +1,8 @@
 
 
-
-
 const targets = document.querySelectorAll('.target');
-
-// флаг, указывающий, что элемент "приклеен" к курсору
-let isSticky = false;
-
-// элемент, который "приклеен" к курсору
-let stickyElement = null;
+let isSticky = false;   // флаг, указывающий, что элемент "приклеен" к курсору
+let stickyElement = null;  // элемент, который "приклеен" к курсору
 
 
 
@@ -25,20 +19,20 @@ targets.forEach(target => {
 
 
 
-        // добавляем обработчик события mousemove на document
-        document.addEventListener('mousemove', onMouseMove);
 
-        // добавляем обработчик события mouseup на document
-        document.addEventListener('mouseup', onMouseUp);
+        document.addEventListener('mousemove', onMouseMove);        // добавляем обработчик события mousemove на document
+
+
+        document.addEventListener('mouseup', onMouseUp);        // добавляем обработчик события mouseup на document
 
 
         document.addEventListener('keydown', function(event) {
 
 
 
-            if (event.key === 'Escape') {
-                // Обработчик для нажатия клавиши ESC
-                // здесь можно добавить логику для отмены перетаскивания и возврата элемента на исходную позицию
+            if (event.key === 'Escape') { // Обработчик для нажатия клавиши ESC
+
+
 
 
                     // удаляем обработчики событий мыши
@@ -55,8 +49,8 @@ targets.forEach(target => {
         });
 
 
-        // функция для обработки события mousemove
-        function onMouseMove(e) {
+
+        function onMouseMove(e) {       // функция для обработки события mousemove
             // вычисляем новые координаты элемента
             const diffX = e.clientX - startX;
             const diffY = e.clientY - startY;
@@ -68,8 +62,8 @@ targets.forEach(target => {
             target.style.top = newTargetY + 'px';
         }
 
-        // функция для обработки события mouseup
-        function onMouseUp() {
+
+        function onMouseUp() {       // функция для обработки события mouseup
             // удаляем обработчики событий
             document.removeEventListener('mousemove', onMouseMove);
             document.removeEventListener('mouseup', onMouseUp);
@@ -91,56 +85,56 @@ document.addEventListener('click', (e) => {
 
 
 
-// обработчик события "двойной клик"
-function onDoubleClick(event) {
-    // если элемент уже "приклеен" к курсору, игнорируем событие
-    if (isSticky) {
+
+function onDoubleClick(event) {  // обработчик события "двойной клик"
+
+    if (isSticky) {  // если элемент уже "приклеен" к курсору, игнорируем событие
         return;
     }
 
-    // запоминаем элемент, на который кликнули дважды
-    stickyElement = event.target;
 
-    // устанавливаем флаг, указывающий, что элемент "приклеен" к курсору
-    isSticky = true;
+    stickyElement = event.target;  // запоминаем элемент, на который кликнули дважды
 
 
+    isSticky = true;    // устанавливаем флаг, указывающий, что элемент "приклеен" к курсору
 
 
 
-    // добавляем обработчики событий мыши для перемещения элемента
-    document.addEventListener('mousemove', onMouseMove);
+
+
+
+    document.addEventListener('mousemove', onMouseMove);    // добавляем обработчики событий мыши для перемещения элемента
     document.addEventListener('mouseup', onMouseUp);
 
 }
 
-// обработчик события "движение мыши"
-function onMouseMove(event) {
-    // если элемент "приклеен" к курсору
-    if (isSticky) {
+
+function onMouseMove(event) {  // обработчик события "движение мыши"
+
+    if (isSticky) {    // если элемент "приклеен" к курсору
         // перемещаем элемент за курсором
         stickyElement.style.left = `${event.clientX}px`;
         stickyElement.style.top = `${event.clientY}px`;
     }
 }
 
-// обработчик события "отжатие левой кнопки мыши"
-function onMouseUp(event) {
-    // если элемент "приклеен" к курсору
-    if (isSticky) {
+
+function onMouseUp(event) {     // обработчик события "отжатие левой кнопки мыши"
+
+    if (isSticky) {    // если элемент "приклеен" к курсору
         // удаляем обработчики событий мыши
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
 
-        // снимаем флаг, указывающий, что элемент "приклеен" к курсору
-        isSticky = false;
+
+        isSticky = false;   // снимаем флаг, указывающий, что элемент "приклеен" к курсору
 
 
     }
 }
 
-// добавляем обработчик события "двойной клик" ко всем элементам с классом "target"
-targets.forEach((element) => {
+
+targets.forEach((element) => { // добавляем обработчик события "двойной клик" ко всем элементам с классом "target"
     element.addEventListener('dblclick', onDoubleClick);
 });
 
@@ -150,13 +144,13 @@ document.addEventListener("keydown", function(event) {
         // Получаем текущий перемещаемый элемент
         const currentTarget = document.querySelector(".target.is-dragging");
 
-        if (currentTarget) {
-            // Отменяем перетаскивание
+        if (currentTarget) {// Отменяем перетаскивание
+
             currentTarget.classList.remove("is-dragging");
             document.body.classList.remove("is-dragging");
 
-            // Возвращаем элемент на исходную позицию
-            currentTarget.style.left = currentTarget.dataset.left;
+
+            currentTarget.style.left = currentTarget.dataset.left;  // Возвращаем элемент на исходную позицию
             currentTarget.style.top = currentTarget.dataset.top;
         }
     }
@@ -197,37 +191,40 @@ document.addEventListener("keydown", handleKeyDown);
 
 window.addEventListener("touchstart", (e) => {
     const box = e.target.closest(".target");
+    // проверяет находится ли элемент на который было нажатие внутри элемента target
     if (box) {
+        // сохраняем начальные координаты
         const posX = box.style.left;
         const posY = box.style.top;
 
-        const touchMove = (e) => {
-            e.preventDefault();
+        const touchMove = (e) => {   // перемещение обьекта за пальцем
+            e.preventDefault();   // предотврощает прокрутку страницы
             box.style.left = e.targetTouches[0].pageX - box.offsetWidth / 2 + "px";
             box.style.top = e.targetTouches[0].pageY - box.offsetHeight / 2 + "px";
             console.log("Move1");
         };
 
         box.addEventListener("touchstart", (e) => {
-            e.preventDefault();
+            e.preventDefault(); // предотврощает прокрутку страницы
         });
 
         box.addEventListener("touchmove", touchMove);
 
         box.addEventListener("touchend", (e) => {
             e.preventDefault();
-            if (e.touches.length > 0) {
+            if (e.touches.length > 0) {  // проверяет есть ли еще пальцы на экране
                 box.style.left = posX;
                 box.style.top = posY;
                 document.removeEventListener("touchmove", touchMove);
             }
-            console.log("End1");
         });
     }
 });
 
-// "Finger-follow" mode
-const THRESHOLD = 300; // in milliseconds
+
+// проверка на двойное касание
+
+const THRESHOLD = 300;
 let touchStartTime = 0;
 window.addEventListener("touchstart", (e) => {
     const box = e.target.closest(".target");
@@ -237,20 +234,19 @@ window.addEventListener("touchstart", (e) => {
     }
 });
 
-const tapHandler = (event) => {
+const tapHandler = (event) => {  // проверяет прошло ли время между началом и концом касания
     const box = event.target.closest(".target");
     const posX = box.style.left;
     const posY = box.style.top;
     const touchEndTime = Date.now();
     if (touchEndTime - touchStartTime < THRESHOLD) {
         event.preventDefault();
-        console.log("tapped twice");
-        box.style.backgroundColor = "yellow";
+
+        console.log('Double click is working!')
         const double_touch_move = (e) => {
             e.preventDefault();
             box.style.left = e.touches[0].pageX - box.offsetWidth / 2 + "px";
             box.style.top = e.touches[0].pageY - box.offsetHeight / 2 + "px";
-            console.log("Move2");
         };
 
         box.addEventListener("touchend", (e) => {
@@ -264,39 +260,39 @@ const tapHandler = (event) => {
                         box.style.top = posY;
                     }
                     document.removeEventListener("touchmove", double_touch_move);
-                    box.style.backgroundColor = "red";
+                    console.log('Double click is finished!')
                 });
-                console.log("End2");
+
             });
         });
     }
 };
 
-// Scaling
-window.addEventListener("touchstart", (e) => {
+
+window.addEventListener("touchstart", (e) => {  // два пальца на экране
     const box = e.target.closest(".target");
     if (box) {
         let initDistance = null;
         let initWidth = null;
         let initHeight = null;
 
-        const scaleStart = (e) => {
+        const scaleStart = (e) => {  // если два пальца
             if (e.touches.length === 2) {
-                initWidth = box.offsetWidth;
-                initHeight = box.offsetHeight;
-                initDistance = getDistance(e.touches[0], e.touches[1]);
+                initWidth = box.offsetWidth;  // текущая ширина экрана
+                initHeight = box.offsetHeight; // текущая высота элемента
+                initDistance = getDistance(e.touches[0], e.touches[1]);  // расстояние между двумя элементами
             }
         };
 
-        const scaleMove = (e) => {
+        const scaleMove = (e) => {  // обрабатывает движение при изменении масштаба элемента
             if (e.touches.length === 2 && initDistance !== null) {
                 const newDistance = getDistance(e.touches[0], e.touches[1]);
-                const scale = newDistance / initDistance;
+                const scale = newDistance / initDistance;  // при движении двух касаний вычисляется новое расстояние между ними
                 const newWidth = initWidth * scale;
                 const newHeight = initHeight * scale;
 
-                // Set a minimum size of 50px
-                if (newWidth >= 50 && newHeight >= 50) {
+
+                if (newWidth >= 50 && newHeight >= 50) {  // если ширина и высота меньше 50px то элемент больше не масшатибруется
                     box.style.width = newWidth + "px";
                     box.style.height = newHeight + "px";
                 }
@@ -313,7 +309,7 @@ window.addEventListener("touchstart", (e) => {
         box.addEventListener("touchmove", scaleMove);
         box.addEventListener("touchend", scaleEnd);
 
-        // Rest of the code...
+
     }
 });
 
